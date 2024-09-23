@@ -1,0 +1,246 @@
+[
+  {
+    "name": "Wikipedia",
+    "description": "Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.",
+    "logo": "https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2.png",
+    "facebookURLs": null,
+    "linkedinURLs": null,
+    "twitterURLs": null,
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "GitHub: Let’s build from here · GitHub",
+    "description": "GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and features, power your CI/CD and DevOps workflows, and secure code before you commit it.",
+    "logo": null,
+    "facebookURLs": [
+      "https://www.facebook.com/GitHub"
+    ],
+    "linkedinURLs": [
+      "https://www.linkedin.com/company/github"
+    ],
+    "twitterURLs": null,
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "Electronics, Cars, Fashion, Collectibles & More | eBay",
+    "description": "Buy & sell electronics, cars, clothes, collectibles & more on eBay, the world's online marketplace. Top brands, low prices & free shipping on many items.",
+    "logo": null,
+    "facebookURLs": [
+      "https://www.facebook.com/eBay"
+    ],
+    "linkedinURLs": null,
+    "twitterURLs": [
+      "https://twitter.com/eBay",
+      "https://www.ebaymainstreet.com/"
+    ],
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "Airbnb | Holiday rentals, cabins, beach houses & more",
+    "description": "Get an Airbnb for every kind of trip → 7 million holiday rentals → 2 million Guest Favourites → 220+ countries and regions worldwide",
+    "logo": null,
+    "facebookURLs": [
+      "https://www.facebook.com/AirbnbIndia",
+      "https://www.facebook.com/AirbnbIndia"
+    ],
+    "linkedinURLs": null,
+    "twitterURLs": [
+      "https://twitter.com/airbnb_in",
+      "https://twitter.com/airbnb_in"
+    ],
+    "instagramURLs": [
+      "https://instagram.com/airbnb",
+      "https://instagram.com/airbnb"
+    ],
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "Trending topics on Tumblr",
+    "description": "Explore trending topics on Tumblr. See all of the GIFs, fan art, and general conversation about the internet’s favorite things.",
+    "logo": null,
+    "facebookURLs": null,
+    "linkedinURLs": null,
+    "twitterURLs": null,
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "Spotify - Web Player: Music for everyone",
+    "description": "Spotify is a digital music service that gives you access to millions of songs.",
+    "logo": null,
+    "facebookURLs": [
+      "https://www.facebook.com/Spotify"
+    ],
+    "linkedinURLs": null,
+    "twitterURLs": [
+      "https://twitter.com/spotify",
+      "https://www.onetrust.com/products/cookie-consent/"
+    ],
+    "instagramURLs": [
+      "https://instagram.com/spotify"
+    ],
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "A Simple and Safer Way to Pay and Get Paid | PayPal IN",
+    "description": "Easily and securely shop from millions of brands across the world with confidence. PayPal has got you covered.",
+    "logo": null,
+    "facebookURLs": null,
+    "linkedinURLs": null,
+    "twitterURLs": null,
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "BBC Home - Breaking News, World News, US News, Sports, Business, Innovation, Climate, Culture, Travel, Video & Audio",
+    "description": "Visit BBC for trusted reporting on the latest world and US news, sports, business, climate, innovation, culture and much more.",
+    "logo": null,
+    "facebookURLs": null,
+    "linkedinURLs": null,
+    "twitterURLs": null,
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "overreacted — A blog by Dan Abramov",
+    "description": "A personal blog by Dan Abramov",
+    "logo": null,
+    "facebookURLs": null,
+    "linkedinURLs": null,
+    "twitterURLs": null,
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "Node.js — Writing files with Node.js",
+    "description": "Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
+    "logo": null,
+    "facebookURLs": null,
+    "linkedinURLs": [
+      "https://www.linkedin.com/company/node-js"
+    ],
+    "twitterURLs": [
+      "https://twitter.com/nodejs"
+    ],
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "MUI: The React component library you always wanted",
+    "description": "MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design.",
+    "logo": "https://mui.com/static/branding/companies/spotify-dark.svg",
+    "facebookURLs": null,
+    "linkedinURLs": [
+      "https://www.linkedin.com/company/mui/"
+    ],
+    "twitterURLs": [
+      "https://www.doit.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage",
+      "https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage"
+    ],
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": "Contact us"
+  },
+  {
+    "name": "overreacted — A blog by Dan Abramov",
+    "description": "A personal blog by Dan Abramov",
+    "logo": null,
+    "facebookURLs": null,
+    "linkedinURLs": null,
+    "twitterURLs": null,
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "ERP",
+    "description": "ERP_SOFTWARE",
+    "logo": null,
+    "facebookURLs": null,
+    "linkedinURLs": null,
+    "twitterURLs": null,
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "ERP",
+    "description": "ERP_SOFTWARE",
+    "logo": null,
+    "facebookURLs": null,
+    "linkedinURLs": null,
+    "twitterURLs": null,
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "puppeteer - npm",
+    "description": "A high-level API to control headless Chrome over the DevTools Protocol. Latest version: 23.4.0, last published: 5 days ago. Start using puppeteer in your project by running `npm i puppeteer`. There are 7688 other projects in the npm registry using puppeteer.",
+    "logo": null,
+    "facebookURLs": null,
+    "linkedinURLs": null,
+    "twitterURLs": [
+      "https://user-images.githubusercontent.com/10379601/29446482-04f7036a-841f-11e7-9872-91d1fc2ea683.png",
+      "https://runkit.com/npm/puppeteer"
+    ],
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": null
+  },
+  {
+    "name": "JSON Arrays",
+    "description": null,
+    "logo": null,
+    "facebookURLs": [
+      "https://www.facebook.com/w3schoolscom/",
+      "https://www.facebook.com/w3schoolscom/",
+      "https://www.facebook.com/w3schoolscom/",
+      "https://www.facebook.com/w3schoolscom/"
+    ],
+    "linkedinURLs": [
+      "https://www.linkedin.com/company/w3schools.com/",
+      "https://www.linkedin.com/company/w3schools.com/",
+      "https://www.linkedin.com/company/w3schools.com/",
+      "https://www.linkedin.com/company/w3schools.com/"
+    ],
+    "twitterURLs": null,
+    "instagramURLs": [
+      "https://www.instagram.com/w3schools.com_official/",
+      "https://www.instagram.com/w3schools.com_official/",
+      "https://www.instagram.com/w3schools.com_official/",
+      "https://www.instagram.com/w3schools.com_official/"
+    ],
+    "address": null,
+    "phone": null,
+    "email": null
+  }
+]
