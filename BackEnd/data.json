@@ -242,5 +242,22 @@
     "address": null,
     "phone": null,
     "email": null
+  },
+  {
+    "name": "MUI: The React component library you always wanted",
+    "description": "MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design.",
+    "logo": "https://mui.com/static/branding/companies/spotify-dark.svg",
+    "facebookURLs": null,
+    "linkedinURLs": [
+      "https://www.linkedin.com/company/mui/"
+    ],
+    "twitterURLs": [
+      "https://www.doit.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage",
+      "https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage"
+    ],
+    "instagramURLs": null,
+    "address": null,
+    "phone": null,
+    "email": "mailto:contact@mui.com"
   }
 ]

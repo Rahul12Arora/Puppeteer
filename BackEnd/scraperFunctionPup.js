@@ -65,7 +65,7 @@ const overReacted = async (url) => {
         // Email address selector with expanded criteria
         const email = document.querySelector(
             'a[href^="mailto:"], .email, [itemprop="email"], .contact-info .email, .contact-email, .email-address, .contact-info .mail'
-        )?.innerText || null;
+        )?.getAttribute('href') || null;
 
         const result = {
             name,
