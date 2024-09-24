@@ -6,6 +6,7 @@ import { Grid } from '@mui/material';
 import { useState } from 'react';
 import HttpService from '../services/httpService';
 import DataGridDemo from './datagrid';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root:{
@@ -53,6 +54,9 @@ export default function MyButton() {
               <Button variant="contained" className={classes.button} onClick={addUrlInfo}>Search and add info</Button>
             </Grid>
           </Grid>
+          <Button>
+            <Link to="/details">Grocery</Link>
+          </Button>
         
         <DataGridDemo tableData={tableData}></DataGridDemo>
       </>
