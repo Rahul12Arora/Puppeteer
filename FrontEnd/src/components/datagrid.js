@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import HttpService from '../services/httpService';
+import Button from '@mui/material/Button';
+// import DataGridDemo from './dataGrid';
+import { makeStyles } from '@mui/styles';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -71,6 +74,15 @@ const columns = [
   // },
 ];
 
+
+function CustomToolbar() {
+  return (
+    <GridToolbarContainer>
+      <GridToolbarExport />
+    </GridToolbarContainer>
+  );
+}
+
 const rows = [
   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
   { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
@@ -87,6 +99,12 @@ export default function DataGridDemo(props) {
     
     const {tableData} = props;
     const [displayData, setDisplayData] = useState(tableData)
+    const [selectedRows, setSelectedRows] = useState([]);
+
+    const handleSelectionChange = (selectionModel) => {
+      console.log('selectionModel is ',selectionModel)
+      setSelectedRows(selectionModel);
+    };
 
     const getDataOnPageLoading = async ()=>{
         console.log('getDataOnPageLoading')
@@ -98,13 +116,26 @@ export default function DataGridDemo(props) {
           }
         }));
       }
+
+    const handleSelectedDelete = async ()=>{
+      const response = await HttpService.deleteSelected();
+      setDisplayData(response.data.map((el,i)=>{
+        return {
+          ...el,
+          id:i+1
+        }
+      }));
+    }
     
       useEffect(()=>{
         console.log('useEffect')
         getDataOnPageLoading();
       },[])
+
   return (
     <Box sx={{ height: 400, width: '100%' }}>
+      <Button onClick={handleSelectedDelete}>Delete</Button>
+      {/* <Button onClick={handleDownloadAllData}>Download CSV</Button> */}
       <DataGrid
         rows={displayData}
         columns={columns}
@@ -115,9 +146,22 @@ export default function DataGridDemo(props) {
             },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[5,25,100]}
         checkboxSelection
+        onSelectionModelChange={(newSelection) => {
+          console.log('hit')
+          handleSelectionChange(newSelection);
+        }}
+        onRowClick = {(e)=>{
+          console.log('hit',e)
+        }}
+        onRowSelectionModelChange = {(e)=>{
+          console.log('hit',e)
+        }}
         disableRowSelectionOnClick
+        slots={{
+          toolbar: CustomToolbar,
+        }}
       />
     </Box>
   );
