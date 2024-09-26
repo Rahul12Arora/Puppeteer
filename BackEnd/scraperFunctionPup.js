@@ -20,12 +20,15 @@
 import puppeteer from "puppeteer";
 
 const overReacted = async (url) => {
+    console.log('url is ',url)
+
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     
     try {
-        await page.goto(url, { waitUntil: 'networkidle2' });
 
+        await page.goto(url, { waitUntil: 'networkidle2' });
+        await page.screenshot('${url}.png')
         const resultFromDoc = await page.evaluate(() => {
             const name = document.title || document.name || null;
 
@@ -78,6 +81,7 @@ const overReacted = async (url) => {
             address,
             phone,
             email,
+            // url
         };
 
         return result;
@@ -89,7 +93,7 @@ const overReacted = async (url) => {
         console.error('Error scraping the website:', error);
         return null;
     } finally {
-        await browser.close();
+        // await browser.close();
     }
 };
 

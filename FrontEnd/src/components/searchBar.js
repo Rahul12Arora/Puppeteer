@@ -48,15 +48,15 @@ export default function MyButton() {
       <>
           <Grid container spacing={3} className={classes.root}>
             <Grid size="auto">
-              <TextField id="outlined-basic" label="Outlined" variant="outlined" className={classes.root} onChange={updateUrl}/>
+              <TextField id="outlined-basic" label="Enter website URL" variant="outlined" className={classes.root} onChange={updateUrl}/>
             </Grid>
             <Grid size="auto">
               <Button variant="contained" className={classes.button} onClick={addUrlInfo}>Search and add info</Button>
             </Grid>
           </Grid>
-          <Button>
+          {/* <Button>
             <Link to="/details">Grocery</Link>
-          </Button>
+          </Button> */}
         
         <DataGridDemo tableData={tableData}></DataGridDemo>
       </>
