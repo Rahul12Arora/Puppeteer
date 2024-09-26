@@ -121,4 +121,59 @@ router.delete('/deleteSelected', async (req, res) => {
     }
   });
 
+  router.post('/newFromArray', async (req, res) => {
+    console.log('API hit');
+    try {
+        console.log('req.body is', req.body);
+        // res.status(200).send('ok')
+        const urls = req.body.urls;
+        for(const url of urls)
+        {
+        if (!url) {
+            console.error('URL is missing');
+            return res.status(400).json({ error: 'URL is required' });
+        }
+
+        const dataToAppend = await overReacted(url);
+
+        if (!dataToAppend) {
+            console.error('No data to append');
+            return res.status(400).json({ error: 'No data to append' });
+        }
+
+        // Read existing data from file
+        let data = fs.readFileSync(filePath, 'utf8');
+        console.log('data is', data);
+
+        let jsonData;
+
+        // Try parsing the existing data
+        try {
+            jsonData = JSON.parse(data);
+        } catch (parseError) {
+            console.error('Error parsing JSON:', parseError);
+            return res.status(500).json({ error: 'Invalid JSON format' });
+        }
+
+        // Ensure jsonData is an array
+        if (!Array.isArray(jsonData)) {
+            console.error('Parsed data is not an array, resetting to empty array');
+            jsonData = [];
+        }
+
+        // Add new data to the array
+        jsonData.push(dataToAppend);
+
+        // Write the updated data back to the file
+        fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2)); // Pretty-print JSON
+
+        console.log('JSON data:', jsonData);
+    }
+        res.status(201).json('data added');
+    } catch (error) {
+        console.error('Error appending data to file:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 export default router; // Use export default

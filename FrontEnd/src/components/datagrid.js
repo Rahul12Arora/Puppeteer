@@ -6,6 +6,7 @@ import HttpService from '../services/httpService';
 import Button from '@mui/material/Button';
 // import DataGridDemo from './dataGrid';
 import { makeStyles } from '@mui/styles';
+import { useNavigate } from 'react-router-dom';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -100,6 +101,7 @@ export default function DataGridDemo(props) {
     const {tableData} = props;
     const [displayData, setDisplayData] = useState(tableData)
     const [selectedRows, setSelectedRows] = useState([]);
+    const navigate = useNavigate();
 
     const handleSelectionChange = (selectionModel) => {
       console.log('selectionModel is ',selectionModel)
@@ -126,7 +128,12 @@ export default function DataGridDemo(props) {
         }
       }));
     }
-    
+
+    const handleCellClick = (e)=>{
+      console.log('e.id is ',e.id)
+      navigate(`/details/${e.id}`)
+    }
+
       useEffect(()=>{
         console.log('useEffect')
         getDataOnPageLoading();
@@ -148,16 +155,10 @@ export default function DataGridDemo(props) {
         }}
         pageSizeOptions={[5,25,100]}
         checkboxSelection
-        onSelectionModelChange={(newSelection) => {
-          console.log('hit')
-          handleSelectionChange(newSelection);
-        }}
         onRowClick = {(e)=>{
-          console.log('hit',e)
+          console.log('hit2',e)
         }}
-        onRowSelectionModelChange = {(e)=>{
-          console.log('hit',e)
-        }}
+        onCellClick={handleCellClick} // Trigger the redirection here
         disableRowSelectionOnClick
         slots={{
           toolbar: CustomToolbar,
