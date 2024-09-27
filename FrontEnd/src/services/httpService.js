@@ -11,12 +11,8 @@ const HttpService = {
         return axios.get(`${backEnd}all`);
     },
     deleteSelected : function (arr) {
-        return axios.put(`${backEnd}deleteSelected?srNosToDelete=${arr}`);
-    },
-    getImageForUrl : function (url) {
-        return axios.get(`${backEnd}getImageForUrl?url=${url}`);
-    },
-    
+        return axios.delete(`${backEnd}deleteSelected?srNosToDelete=${arr}`);
+    }
 }
 
 export default HttpService;

@@ -35,7 +35,6 @@ export default function MyButton() {
   }
   const addUrlInfo = async ()=>{
     try{
-      console.log('url is ',url)
       const response = await HttpService.addNew(url);
       console.log('tableData is ',response.data)
       setTableData(response.data);

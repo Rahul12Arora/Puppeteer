@@ -1,13 +1,16 @@
 import e from 'express';
 const router = e.Router();
 import fs from 'fs';
+import path from 'path';
 const filePath = './data.json';
+const imageFolder = './images/';
 import { overReacted } from "./scraperFunctionPup.js";
+import internal from 'stream';
 
 router.post('/new', async (req, res) => {
-    console.log('API hit');
+    // console.log('API hit');
     try {
-        console.log('req.query is', req.query);
+        // console.log('req.query is', req.query);
         const url = req.query.url;
 
         if (!url) {
@@ -24,7 +27,7 @@ router.post('/new', async (req, res) => {
 
         // Read existing data from file
         let data = fs.readFileSync(filePath, 'utf8');
-        console.log('data is', data);
+        // console.log('data is', data);
 
         let jsonData;
 
@@ -48,7 +51,7 @@ router.post('/new', async (req, res) => {
         // Write the updated data back to the file
         fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2)); // Pretty-print JSON
 
-        console.log('JSON data:', jsonData);
+        // console.log('JSON data:', jsonData);
         res.status(201).json(jsonData);
     } catch (error) {
         console.error('Error appending data to file:', error);
@@ -57,29 +60,42 @@ router.post('/new', async (req, res) => {
 });
 
 router.get('/all', async (req, res) => {
-    console.log('apit hit')
+    // console.log('api hit')
     try {
         // data was read from file
         const data = fs.readFileSync(filePath, 'utf8');
         const jsonData = JSON.parse(data);
-        console.log('JSON data:', jsonData);
+
+        // Loop through the objects in jsonData
+        for (const obj of jsonData) {
+            const imagePath = path.join(imageFolder, `${obj.name}.png`);  // Construct image path dynamically
+
+            // Check if image exists before reading
+            if (fs.existsSync(imagePath)) {
+                // Read image as base64 or buffer to include it in the response
+                const imageData = fs.readFileSync(imagePath, 'base64');   // Reading image as base64 string
+
+                obj.imageData = `data:image/png;base64,${imageData}`;      // Embedding the base64 image
+            } else {
+                // console.log(`Image not found for ${obj.name}`);
+                obj.imageData = null;  // Handle case where image is not found
+            }
+        }
         res.status(201).json(jsonData);
     } catch (error) {
-      console.error('Error creating CHM category:', error);
+      console.error('Error getting data', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
 router.delete('/deleteSelected', async (req, res) => {
     try {
-        console.log('req.query is ',req.query)
+        // console.log('req.query is ',typeof(req.query.srNosToDelete))
 
-        const srNosToDelete = JSON.parse(req.query.srNosToDelete)
+        let srNosToDelete = req.query.srNosToDelete.trim().split(',')
 
-        console.log('srNosToDelete is',srNosToDelete)
-
-        srNosToDelete.forEach((el)=>{
-            console.log(el);
+        srNosToDelete = srNosToDelete.map((el)=>{
+            return parseInt(el)
         })
 
         fs.readFile(filePath, 'utf8', (err, data) => {
@@ -99,7 +115,6 @@ router.delete('/deleteSelected', async (req, res) => {
                 const updatedData = jsonData.filter((item, i , arr) => {
                     return !srNosToDelete.includes(i+1)
                 });
-        
                 // Write the updated data back to the JSON file
                 fs.writeFile(filePath, JSON.stringify(updatedData, null, 2), (writeErr) => {
                     if (writeErr) {
@@ -116,7 +131,7 @@ router.delete('/deleteSelected', async (req, res) => {
         });
 
     } catch (error) {
-      console.error('Error creating CHM category:', error);
+      console.error('Error:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
@@ -124,7 +139,7 @@ router.delete('/deleteSelected', async (req, res) => {
   router.post('/newFromArray', async (req, res) => {
     console.log('API hit');
     try {
-        console.log('req.body is', req.body);
+        // console.log('req.body is', req.body);
         // res.status(200).send('ok')
         const urls = req.body.urls;
         for(const url of urls)
@@ -143,7 +158,7 @@ router.delete('/deleteSelected', async (req, res) => {
 
         // Read existing data from file
         let data = fs.readFileSync(filePath, 'utf8');
-        console.log('data is', data);
+        // console.log('data is', data);
 
         let jsonData;
 
@@ -167,7 +182,7 @@ router.delete('/deleteSelected', async (req, res) => {
         // Write the updated data back to the file
         fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2)); // Pretty-print JSON
 
-        console.log('JSON data:', jsonData);
+        // console.log('JSON data:', jsonData);
     }
         res.status(201).json('data added');
     } catch (error) {

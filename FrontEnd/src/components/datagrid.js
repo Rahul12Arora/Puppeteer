@@ -103,11 +103,6 @@ export default function DataGridDemo(props) {
     const [selectedRows, setSelectedRows] = useState([]);
     const navigate = useNavigate();
 
-    const handleSelectionChange = (selectionModel) => {
-      console.log('selectionModel is ',selectionModel)
-      setSelectedRows(selectionModel);
-    };
-
     const getDataOnPageLoading = async ()=>{
         console.log('getDataOnPageLoading')
         const response = await HttpService.all();
@@ -120,7 +115,7 @@ export default function DataGridDemo(props) {
       }
 
     const handleSelectedDelete = async ()=>{
-      const response = await HttpService.deleteSelected();
+      const response = await HttpService.deleteSelected(selectedRows);
       setDisplayData(response.data.map((el,i)=>{
         return {
           ...el,
@@ -129,16 +124,15 @@ export default function DataGridDemo(props) {
       }));
     }
 
-    const handleCellClick = (e)=>{
-      console.log('e.id is ',e.id)
+    const handleRedirectionClick = (e)=>{
       navigate(`/details/${e.id}`)
     }
 
       useEffect(()=>{
-        console.log('useEffect')
         getDataOnPageLoading();
-      },[])
-
+        console.log('hello')
+      },[props.tableData])
+      // console.log('datagrid tableData',tableData)
   return (
     <Box sx={{ height: 400, width: '100%' }}>
       <Button onClick={handleSelectedDelete}>Delete</Button>
@@ -154,11 +148,16 @@ export default function DataGridDemo(props) {
           },
         }}
         pageSizeOptions={[5,25,100]}
-        checkboxSelection
-        onRowClick = {(e)=>{
-          console.log('hit2',e)
+
+        checkboxSelection = {(e)=>{
+          console.log('selected')
         }}
-        onCellClick={handleCellClick} // Trigger the redirection here
+        onRowSelectionModelChange = {(e)=>{
+          setSelectedRows(e)
+        }}
+        onRowClick = {(e)=>{
+          handleRedirectionClick(e)
+        }}
         disableRowSelectionOnClick
         slots={{
           toolbar: CustomToolbar,
