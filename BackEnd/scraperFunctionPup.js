@@ -31,7 +31,7 @@ function extractDomainName(url) {
 }
 
 const overReacted = async (url) => {
-    console.log('url is ',url)
+    // console.log('url is ',url)
 
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();

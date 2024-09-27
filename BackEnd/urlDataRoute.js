@@ -137,7 +137,7 @@ router.delete('/deleteSelected', async (req, res) => {
   });
 
   router.post('/newFromArray', async (req, res) => {
-    console.log('API hit');
+    // console.log('API hit');
     try {
         // console.log('req.body is', req.body);
         // res.status(200).send('ok')

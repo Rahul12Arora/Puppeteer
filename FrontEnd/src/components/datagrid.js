@@ -104,7 +104,7 @@ export default function DataGridDemo(props) {
     const navigate = useNavigate();
 
     const getDataOnPageLoading = async ()=>{
-        console.log('getDataOnPageLoading')
+        // console.log('getDataOnPageLoading')
         const response = await HttpService.all();
         setDisplayData(response.data.map((el,i)=>{
           return {
@@ -130,7 +130,7 @@ export default function DataGridDemo(props) {
 
       useEffect(()=>{
         getDataOnPageLoading();
-        console.log('hello')
+        // console.log('hello')
       },[props.tableData])
       // console.log('datagrid tableData',tableData)
   return (
@@ -149,9 +149,9 @@ export default function DataGridDemo(props) {
         }}
         pageSizeOptions={[5,25,100]}
 
-        checkboxSelection = {(e)=>{
-          console.log('selected')
-        }}
+        // checkboxSelection = {(e)=>{
+        //   console.log('selected')
+        // }}
         onRowSelectionModelChange = {(e)=>{
           setSelectedRows(e)
         }}

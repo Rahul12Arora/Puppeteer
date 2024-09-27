@@ -18,7 +18,7 @@ const DetailsPage = () => {
         getDataOnPageLoading();
     },[])
 
-    console.log('displayData is ',displayData)
+    // console.log('displayData is ',displayData)
     return (
         <>
         <Box sx={{ padding: 2, backgroundColor: "#f4f4f4", height: "100vh" }}>
