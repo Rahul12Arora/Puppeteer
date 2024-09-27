@@ -19,8 +19,19 @@
 
 import puppeteer from "puppeteer";
 
+function extractDomainName(url) {
+    // Use URL constructor to parse the URL
+    const parsedUrl = new URL(url);
+    
+    // Split the hostname by dots and get the second-to-last part, which is usually the domain name
+    const domainParts = parsedUrl.hostname.split('.');
+    
+    // Return the second-to-last part, assuming standard format like 'www.netflix.com'
+    return domainParts.length > 1 ? domainParts[domainParts.length - 2] : null;
+}
+
 const overReacted = async (url) => {
-    console.log('url is ',url)
+    // console.log('url is ',url)
 
     const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
@@ -28,10 +39,16 @@ const overReacted = async (url) => {
     try {
 
         await page.goto(url, { waitUntil: 'networkidle2' });
-        await page.screenshot('${url}.png')
-        const resultFromDoc = await page.evaluate(() => {
-            const name = document.title || document.name || null;
+        const name = extractDomainName(url);
+        // console.log('name is ',name)
+        // console.log('url is ',url)
+        const urlString = url
+        const nameString = name
+        await page.screenshot({path: `images/${name}.png`})
 
+        const resultFromDoc = await page.evaluate(({urlString,nameString}) => {
+            // console.log('urlString is ',urlString)
+            // console.log('nameString is ',nameString)
         const getMetaContent = (metaName) => {
             const metaTag = document.querySelector(`meta[name="${metaName}"]`);
             return metaTag ? metaTag.content : null;
@@ -41,7 +58,7 @@ const overReacted = async (url) => {
 
         // Logo selector with additional alternatives
         const logo = document.querySelector(
-            'img[src*="logo"], img[alt*="logo"], img[title*="logo"], img[class*="logo"], img[id*="logo"], img[src*="favicon"], link[rel="icon"]'
+            'img[src*="logo"], img[alt*="logo"], img[title*="logo"], img[class*="logo"], img[id*="logo"], img[src*="favicon"], link[rel="icon"], link[href*="favicon"], link[href*=".ico"]'
         )?.src || null;
 
         // Function to get multiple social media URLs
@@ -64,14 +81,25 @@ const overReacted = async (url) => {
         const phone = document.querySelector(
             'a[href^="tel:"], .phone, .tel, [itemprop="telephone"], .contact-info .phone, .contact-number, .phone-number, .contact-info .tel'
         )?.innerText || null;
+        
+        const contactElement = Array.from(document.querySelectorAll('span, div, p'))
+                .find(el => el.textContent.includes('Questions? Call'));
+            
+            // Extract contact number from the found element
+            const contactNumber = contactElement ? 
+                contactElement.querySelector('a')?.innerText : null;
+
+            // Return whichever phone number exists
+            const finalPhone = phone || contactNumber || null;
+
 
         // Email address selector with expanded criteria
         const email = document.querySelector(
             'a[href^="mailto:"], .email, [itemprop="email"], .contact-info .email, .contact-email, .email-address, .contact-info .mail'
         )?.getAttribute('href') || null;
 
-        const result = {
-            name,
+        let result = {
+            name:nameString,
             description,
             logo,
             facebookURLs,
@@ -79,21 +107,21 @@ const overReacted = async (url) => {
             twitterURLs,
             instagramURLs,
             address,
-            phone,
+            phone:finalPhone,
             email,
-            // url
+            url:urlString
         };
 
         return result;
-        });
+        }, {urlString, nameString});
 
-        console.log(resultFromDoc);
+        // console.log(resultFromDoc);
         return resultFromDoc;
     } catch (error) {
         console.error('Error scraping the website:', error);
         return null;
     } finally {
-        // await browser.close();
+        await browser.close();
     }
 };
 

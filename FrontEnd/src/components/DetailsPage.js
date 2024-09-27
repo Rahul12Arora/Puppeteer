@@ -12,13 +12,13 @@ const DetailsPage = () => {
     const getDataOnPageLoading = async ()=>{
         const response = await HttpService.all();
         setDisplayData(response.data[id-1]);
-        const imageData = await HttpService.getImageForUrl();
+        // const imageData = await HttpService.getImageForUrl();
     }
     useEffect(()=>{
         getDataOnPageLoading();
     },[])
 
-    console.log('displayData is ',displayData)
+    // console.log('displayData is ',displayData)
     return (
         <>
         <Box sx={{ padding: 2, backgroundColor: "#f4f4f4", height: "100vh" }}>
@@ -29,8 +29,8 @@ const DetailsPage = () => {
                     {/* Logo (Left Side) */}
                     <Box sx={{ marginRight: 2 }}>
                         <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJEqgLFHEKS88Zp7YCu8EzyD65Rw2huxmWrw&s"
-                            alt="Netflix Logo"
+                            src={displayData?.logo}
+                            alt={`${displayData?.name} Logo`}
                             style={{ width: "200px" }}
                         />
                     </Box>
@@ -99,7 +99,7 @@ const DetailsPage = () => {
                             {/* Website */}
                             <Box sx={{ marginBottom: 2 }}>
                                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <Link href="https://netflix.com" underline="hover">
+                                    <Link href={displayData.url || "website.com"} underline="hover">
                                         <Typography variant="body2" sx={{ marginRight: 1 }}>
                                             Website
                                         </Typography>
@@ -107,7 +107,7 @@ const DetailsPage = () => {
                                 </Box>
                                 <Typography variant="body2">
                                     {/* netflix.com */}
-                                    {displayData.website || "website.com"}
+                                    {displayData.url || "website.com"}
                                     </Typography>
                             </Box>
 
@@ -197,11 +197,16 @@ const DetailsPage = () => {
                 {/* Right side - Screenshot of the webpage */}
                 <Grid item xs={12} md={8}>
                     <Card sx={{ padding: 2 }}>
-                        <Box
+                        {/* <Box
                             component="img"
                             src="https://pageflows.com/media/videos/OnboardingNetflx.mov.mp4-screenshot-.jpg"
                             alt="Netflix Screenshot"
                             sx={{ width: "100%", borderRadius: 2 }}
+                        /> */}
+                        <img
+                            src={displayData.imageData}
+                            alt={displayData.name}
+                            style={{ width: '100%', height: '100%' }} // Adjust size as needed
                         />
                     </Card>
                 </Grid>
